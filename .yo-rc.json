@@ -1,0 +1,39 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "it.unimib.disco.bigtwine",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "5.7.0",
+    "applicationType": "gateway",
+    "baseName": "apigateway",
+    "packageName": "it.unimib.disco.bigtwine",
+    "packageFolder": "it/unimib/disco/bigtwine",
+    "serverPort": "9000",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": false,
+    "websocket": "spring-websocket",
+    "databaseType": "mongodb",
+    "devDatabaseType": "mongodb",
+    "prodDatabaseType": "mongodb",
+    "searchEngine": false,
+    "messageBroker": "kafka",
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": true,
+    "jwtSecretKey": "OTgzYThkNDkzMTE2MTE2NjE5NWRkY2ViZDBiMTQzZTM4ZTRmOWYzNDFkNjhmZTE5MzUyMGM4ZjU0Y2VhOWNmMmM1NTAwOWI5YmUzMTg5YWM2NWYwNThmNjVkNTgwODNiMzdkMzZhMjFhYmM2YmE5MmZjMzI5NjVlMWI2ODM2NDI=",
+    "clientFramework": "angularX",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": [
+      "en",
+      "it"
+    ]
+  }
+}
