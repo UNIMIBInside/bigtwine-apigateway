@@ -4,6 +4,7 @@ import it.unimib.disco.bigtwine.services.apigateway.ApigatewayApp;
 import it.unimib.disco.bigtwine.services.apigateway.domain.User;
 import it.unimib.disco.bigtwine.services.apigateway.repository.UserRepository;
 import it.unimib.disco.bigtwine.services.apigateway.security.jwt.TokenProvider;
+import it.unimib.disco.bigtwine.services.apigateway.service.UserService;
 import it.unimib.disco.bigtwine.services.apigateway.web.rest.errors.ExceptionTranslator;
 import it.unimib.disco.bigtwine.services.apigateway.web.rest.vm.LoginVM;
 import org.junit.Before;
@@ -41,6 +42,9 @@ public class UserJWTControllerIntTest {
     private AuthenticationManager authenticationManager;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private UserRepository userRepository;
 
     @Autowired
@@ -53,7 +57,7 @@ public class UserJWTControllerIntTest {
 
     @Before
     public void setup() {
-        UserJWTController userJWTController = new UserJWTController(tokenProvider, authenticationManager);
+        UserJWTController userJWTController = new UserJWTController(tokenProvider, authenticationManager, userService);
         this.mockMvc = MockMvcBuilders.standaloneSetup(userJWTController)
             .setControllerAdvice(exceptionTranslator)
             .build();

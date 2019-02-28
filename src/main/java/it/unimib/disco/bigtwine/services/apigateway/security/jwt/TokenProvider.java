@@ -28,6 +28,8 @@ public class TokenProvider {
 
     private static final String AUTHORITIES_KEY = "auth";
 
+    private static final String USER_ID_KEY = "userId";
+
     private Key key;
 
     private long tokenValidityInMilliseconds;
@@ -60,7 +62,7 @@ public class TokenProvider {
                 .getTokenValidityInSecondsForRememberMe();
     }
 
-    public String createToken(Authentication authentication, boolean rememberMe) {
+    public String createToken(Authentication authentication, boolean rememberMe, String userId) {
         String authorities = authentication.getAuthorities().stream()
             .map(GrantedAuthority::getAuthority)
             .collect(Collectors.joining(","));
@@ -76,9 +78,14 @@ public class TokenProvider {
         return Jwts.builder()
             .setSubject(authentication.getName())
             .claim(AUTHORITIES_KEY, authorities)
+            .claim(USER_ID_KEY, userId)
             .signWith(key, SignatureAlgorithm.HS512)
             .setExpiration(validity)
             .compact();
+    }
+
+    public String createToken(Authentication authentication, boolean rememberMe) {
+        return this.createToken(authentication, rememberMe, null);
     }
 
     public Authentication getAuthentication(String token) {

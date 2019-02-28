@@ -1,7 +1,9 @@
 package it.unimib.disco.bigtwine.services.apigateway.web.rest;
 
+import it.unimib.disco.bigtwine.services.apigateway.domain.User;
 import it.unimib.disco.bigtwine.services.apigateway.security.jwt.JWTFilter;
 import it.unimib.disco.bigtwine.services.apigateway.security.jwt.TokenProvider;
+import it.unimib.disco.bigtwine.services.apigateway.service.UserService;
 import it.unimib.disco.bigtwine.services.apigateway.web.rest.vm.LoginVM;
 
 import com.codahale.metrics.annotation.Timed;
@@ -17,6 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 /**
  * Controller to authenticate users.
@@ -29,9 +32,12 @@ public class UserJWTController {
 
     private final AuthenticationManager authenticationManager;
 
-    public UserJWTController(TokenProvider tokenProvider, AuthenticationManager authenticationManager) {
+    private final UserService userService;
+
+    public UserJWTController(TokenProvider tokenProvider, AuthenticationManager authenticationManager, UserService userService) {
         this.tokenProvider = tokenProvider;
         this.authenticationManager = authenticationManager;
+        this.userService = userService;
     }
 
     @PostMapping("/authenticate")
@@ -41,10 +47,12 @@ public class UserJWTController {
         UsernamePasswordAuthenticationToken authenticationToken =
             new UsernamePasswordAuthenticationToken(loginVM.getUsername(), loginVM.getPassword());
 
+        Optional<User> user = this.userService.getUserWithAuthoritiesByLogin(loginVM.getUsername());
+        String userId = user.map(User::getId).orElse(null);
         Authentication authentication = this.authenticationManager.authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         boolean rememberMe = (loginVM.isRememberMe() == null) ? false : loginVM.isRememberMe();
-        String jwt = tokenProvider.createToken(authentication, rememberMe);
+        String jwt = tokenProvider.createToken(authentication, rememberMe, userId);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(JWTFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
         return new ResponseEntity<>(new JWTToken(jwt), httpHeaders, HttpStatus.OK);
