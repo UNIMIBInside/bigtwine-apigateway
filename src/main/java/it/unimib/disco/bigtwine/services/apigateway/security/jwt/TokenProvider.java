@@ -6,6 +6,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.message.BasicNameValuePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,6 +30,7 @@ public class TokenProvider {
     private final Logger log = LoggerFactory.getLogger(TokenProvider.class);
 
     private static final String AUTHORITIES_KEY = "auth";
+    private static final String DETAILS_KEY = "details";
 
     private Key key;
 
@@ -65,6 +69,23 @@ public class TokenProvider {
             .map(GrantedAuthority::getAuthority)
             .collect(Collectors.joining(","));
 
+        String authDetails = null;
+        if (authentication.getDetails() != null) {
+            if (authentication.getDetails() instanceof String) {
+                authDetails = (String)authentication.getDetails();
+            }else if (authentication.getDetails() instanceof Map) {
+                List<NameValuePair> pairs = new ArrayList<>();
+                @SuppressWarnings("unchecked")
+                Map<Object, Object> details = (Map<Object, Object>) authentication.getDetails();
+
+                for (Map.Entry<Object, Object> pair : details.entrySet()) {
+                    pairs.add(new BasicNameValuePair(pair.getKey().toString(), pair.getValue().toString()));
+                }
+
+                authDetails = URLEncodedUtils.format(pairs, "UTF-8");
+            }
+        }
+
         long now = (new Date()).getTime();
         Date validity;
         if (rememberMe) {
@@ -76,6 +97,7 @@ public class TokenProvider {
         return Jwts.builder()
             .setSubject(authentication.getName())
             .claim(AUTHORITIES_KEY, authorities)
+            .claim(DETAILS_KEY, authDetails)
             .signWith(key, SignatureAlgorithm.HS512)
             .setExpiration(validity)
             .compact();
@@ -92,9 +114,19 @@ public class TokenProvider {
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
 
-        User principal = new User(claims.getSubject(), "", authorities);
+        Map<Object, Object> details = null;
+        if (claims.get(DETAILS_KEY) != null) {
+            details = URLEncodedUtils
+                .parse(claims.get(DETAILS_KEY).toString(), StandardCharsets.UTF_8)
+                .stream()
+                .collect(Collectors.toMap(NameValuePair::getName, NameValuePair::getValue));
+        }
 
-        return new UsernamePasswordAuthenticationToken(principal, token, authorities);
+        User principal = new User(claims.getSubject(), "", authorities);
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(principal, token, authorities);
+        authentication.setDetails(details);
+
+        return authentication;
     }
 
     public boolean validateToken(String authToken) {

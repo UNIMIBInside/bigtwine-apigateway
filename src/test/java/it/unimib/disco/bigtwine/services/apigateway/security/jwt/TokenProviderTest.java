@@ -1,5 +1,6 @@
 package it.unimib.disco.bigtwine.services.apigateway.security.jwt;
 
+import it.unimib.disco.bigtwine.services.apigateway.security.AuthDetailsConstants;
 import it.unimib.disco.bigtwine.services.apigateway.security.AuthoritiesConstants;
 
 import java.security.Key;
@@ -83,6 +84,25 @@ public class TokenProviderTest {
         boolean isTokenValid = tokenProvider.validateToken("");
 
         assertThat(isTokenValid).isEqualTo(false);
+    }
+
+    @Test
+    public void testTokenWithUserDetails() {
+        UsernamePasswordAuthenticationToken authenticationToken = (UsernamePasswordAuthenticationToken)createAuthentication();
+        Map<String, Object> userDetails = new HashMap<>();
+        userDetails.put(AuthDetailsConstants.USER_ID, "testuser-1");
+        authenticationToken.setDetails(userDetails);
+
+        String token = tokenProvider.createToken(authenticationToken, false);
+
+        boolean isTokenValid = tokenProvider.validateToken(token);
+
+        assertThat(isTokenValid).isEqualTo(true);
+
+        Authentication authentication = tokenProvider.getAuthentication(token);
+        assertThat(authentication.getDetails()).isInstanceOf(Map.class);
+        Object userId = ((Map)authentication.getDetails()).get(AuthDetailsConstants.USER_ID);
+        assertThat(userId).isEqualTo("testuser-1");
     }
 
     private Authentication createAuthentication() {

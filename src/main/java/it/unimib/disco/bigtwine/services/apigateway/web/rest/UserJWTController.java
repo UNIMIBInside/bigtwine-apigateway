@@ -1,7 +1,10 @@
 package it.unimib.disco.bigtwine.services.apigateway.web.rest;
 
+import it.unimib.disco.bigtwine.services.apigateway.domain.User;
+import it.unimib.disco.bigtwine.services.apigateway.security.AuthDetailsConstants;
 import it.unimib.disco.bigtwine.services.apigateway.security.jwt.JWTFilter;
 import it.unimib.disco.bigtwine.services.apigateway.security.jwt.TokenProvider;
+import it.unimib.disco.bigtwine.services.apigateway.service.UserService;
 import it.unimib.disco.bigtwine.services.apigateway.web.rest.vm.LoginVM;
 
 import com.codahale.metrics.annotation.Timed;
@@ -17,6 +20,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * Controller to authenticate users.
@@ -29,9 +35,12 @@ public class UserJWTController {
 
     private final AuthenticationManager authenticationManager;
 
-    public UserJWTController(TokenProvider tokenProvider, AuthenticationManager authenticationManager) {
+    private final UserService userService;
+
+    public UserJWTController(TokenProvider tokenProvider, AuthenticationManager authenticationManager, UserService userService) {
         this.tokenProvider = tokenProvider;
         this.authenticationManager = authenticationManager;
+        this.userService = userService;
     }
 
     @PostMapping("/authenticate")
@@ -40,6 +49,13 @@ public class UserJWTController {
 
         UsernamePasswordAuthenticationToken authenticationToken =
             new UsernamePasswordAuthenticationToken(loginVM.getUsername(), loginVM.getPassword());
+
+        Optional<User> user = this.userService.getUserWithAuthoritiesByLogin(loginVM.getUsername());
+        if (user.isPresent()) {
+            Map<String, Object> userDetails = new HashMap<>();
+            userDetails.put(AuthDetailsConstants.USER_ID, user.get().getId());
+            authenticationToken.setDetails(userDetails);
+        }
 
         Authentication authentication = this.authenticationManager.authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
