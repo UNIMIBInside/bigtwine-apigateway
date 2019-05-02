@@ -159,6 +159,22 @@ public class UserResource {
     }
 
     /**
+     * GET /users/id/:id : get the user by id.
+     *
+     * @param id the id of the user to find
+     * @return the ResponseEntity with status 200 (OK) and with body the user with the "id", or with status 404 (Not Found)
+     */
+    @GetMapping("/users/id/{id:.+}")
+    @Timed
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\")")
+    public ResponseEntity<UserDTO> getUserById(@PathVariable String id) {
+        log.debug("REST request to get User by id: {}", id);
+        return ResponseUtil.wrapOrNotFound(
+            userService.getUserWithAuthorities(id)
+                .map(UserDTO::new));
+    }
+
+    /**
      * GET /users/:login : get the "login" user.
      *
      * @param login the login of the user to find
