@@ -9,7 +9,8 @@ import {
     metricsRoute,
     gatewayRoute,
     trackerRoute,
-    userMgmtRoute
+    userMgmtRoute,
+    analysisMgmtRoute
 } from './';
 
 import { UserRouteAccessService } from 'app/core';
@@ -23,6 +24,7 @@ const ADMIN_ROUTES = [
     gatewayRoute,
     trackerRoute,
     ...userMgmtRoute,
+    ...analysisMgmtRoute,
     metricsRoute
 ];
 
