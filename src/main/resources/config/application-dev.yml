@@ -55,10 +55,10 @@ spring:
             uri: mongodb://localhost:27017
             database: apigateway
     mail:
-        host: localhost
+        host: smtp.mailgun.org
         port: 25
-        username:
-        password:
+        username: postmaster@sandboxff696ac8212743b2aae44467ea696c67.mailgun.org
+        password: b279e64f43932f04312546a93117059a
     messages:
         cache-duration: PT1S # 1 second, see the ISO 8601 standard
     thymeleaf:
