@@ -40,6 +40,10 @@ eureka:
 ribbon:
     eureka:
         enabled: true
+socials:
+    ribbon:
+        ReadTimeout: 10000
+        SocketTimeout: 10000
 # See http://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html
 zuul: # those values must be configured depending on the application specific needs
     sensitive-headers: Cookie,Set-Cookie #see https://github.com/spring-cloud/spring-cloud-netflix/issues/3126
@@ -86,6 +90,12 @@ spring:
             enabled: false
     thymeleaf:
         mode: HTML
+    cloud:
+        stream:
+            bindings:
+                tweetsProcessedChannel:
+                    destination: tweets-processed
+
 
 server:
     servlet:
