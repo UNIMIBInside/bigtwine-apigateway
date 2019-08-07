@@ -93,9 +93,12 @@ spring:
     cloud:
         stream:
             bindings:
-                tweetsProcessedChannel:
-                    destination: tweets-processed
-
+                # analysisStatusChangedChannel:
+                #    destination: analysis-status-changes
+                analysisResultsForwardedChannel:
+                    destination: analysis-results-forwarded
+                analysisUpdatesChannel:
+                    destination: analysis-updates
 
 server:
     servlet:

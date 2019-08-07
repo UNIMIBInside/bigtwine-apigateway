@@ -44,6 +44,10 @@ public class WebsocketConfiguration implements WebSocketMessageBrokerConfigurer 
             .withSockJS()
             .setInterceptors(httpSessionHandshakeInterceptor());
 
+        registry.addEndpoint("/websocket/analysis")
+            .setHandshakeHandler(defaultHandshakeHandler())
+            .setAllowedOrigins("*");
+
         registry
             .addEndpoint("/gs-guide-websocket")
             //.setHandshakeHandler(defaultHandshakeHandler())

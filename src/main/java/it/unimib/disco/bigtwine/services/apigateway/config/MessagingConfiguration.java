@@ -3,7 +3,9 @@ package it.unimib.disco.bigtwine.services.apigateway.config;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import it.unimib.disco.bigtwine.services.apigateway.messaging.TweetsProcessedConsumerChannel;
+import it.unimib.disco.bigtwine.services.apigateway.messaging.AnalysisResultsConsumerChannel;
+import it.unimib.disco.bigtwine.services.apigateway.messaging.AnalysisStatusChangedConsumerChannel;
+import it.unimib.disco.bigtwine.services.apigateway.messaging.AnalysisUpdatesConsumerChannel;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,7 +23,12 @@ import org.springframework.messaging.support.GenericMessage;
  * See http://docs.spring.io/spring-cloud-stream/docs/current/reference/htmlsingle/
  * for the official Spring Cloud Stream documentation.
  */
-@EnableBinding(value = { Source.class, TweetsProcessedConsumerChannel.class})
+@EnableBinding(value = {
+    Source.class,
+    AnalysisResultsConsumerChannel.class,
+    // AnalysisStatusChangedConsumerChannel.class,
+    AnalysisUpdatesConsumerChannel.class
+})
 public class MessagingConfiguration {
 
     @Value("${spring.application.name:JhipsterService}")
