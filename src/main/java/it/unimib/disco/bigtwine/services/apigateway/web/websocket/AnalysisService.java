@@ -1,8 +1,6 @@
 package it.unimib.disco.bigtwine.services.apigateway.web.websocket;
 
-import it.unimib.disco.bigtwine.commons.messaging.AnalysisStatusChangedEvent;
 import it.unimib.disco.bigtwine.services.apigateway.messaging.AnalysisResultsConsumerChannel;
-import it.unimib.disco.bigtwine.services.apigateway.messaging.AnalysisStatusChangedConsumerChannel;
 import it.unimib.disco.bigtwine.services.apigateway.messaging.AnalysisUpdatesConsumerChannel;
 import it.unimib.disco.bigtwine.services.apigateway.web.websocket.dto.AnalysisDTO;
 import it.unimib.disco.bigtwine.services.apigateway.web.websocket.dto.AnalysisResultDTO;
@@ -11,8 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Controller;
-
-import java.util.Map;
 
 @Controller
 public class AnalysisService {

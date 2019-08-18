@@ -9,6 +9,7 @@ public class AnalysisDTO {
     private String status = null;
     private String visibility = null;
     private Object input = null;
+    private double progress;
     private OffsetDateTime createDate;
     private OffsetDateTime updateDate;
 
@@ -58,6 +59,14 @@ public class AnalysisDTO {
 
     public void setInput(Object input) {
         this.input = input;
+    }
+
+    public double getProgress() {
+        return progress;
+    }
+
+    public void setProgress(double progress) {
+        this.progress = progress;
     }
 
     public OffsetDateTime getCreateDate() {
