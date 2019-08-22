@@ -1,12 +1,14 @@
 package it.unimib.disco.bigtwine.services.apigateway.web.websocket.dto;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 public class AnalysisDTO {
     private String id;
     private String type = null;
-    private String owner;
+    private Object owner;
     private String status = null;
+    private List<Object> statusHistory = null;
     private String visibility = null;
     private Object input = null;
     private double progress;
@@ -29,11 +31,11 @@ public class AnalysisDTO {
         this.type = type;
     }
 
-    public String getOwner() {
+    public Object getOwner() {
         return owner;
     }
 
-    public void setOwner(String owner) {
+    public void setOwner(Object owner) {
         this.owner = owner;
     }
 
@@ -43,6 +45,14 @@ public class AnalysisDTO {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<Object> getStatusHistory() {
+        return statusHistory;
+    }
+
+    public void setStatusHistory(List<Object> statusHistory) {
+        this.statusHistory = statusHistory;
     }
 
     public String getVisibility() {
