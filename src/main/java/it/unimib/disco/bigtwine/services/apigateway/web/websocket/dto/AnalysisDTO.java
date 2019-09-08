@@ -2,6 +2,7 @@ package it.unimib.disco.bigtwine.services.apigateway.web.websocket.dto;
 
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Map;
 
 public class AnalysisDTO {
     private String id;
@@ -12,6 +13,8 @@ public class AnalysisDTO {
     private String visibility = null;
     private Object input = null;
     private double progress;
+    private Object export = null;
+    private Map<String, Object> settings = null;
     private OffsetDateTime createDate;
     private OffsetDateTime updateDate;
 
@@ -77,6 +80,22 @@ public class AnalysisDTO {
 
     public void setProgress(double progress) {
         this.progress = progress;
+    }
+
+    public Object getExport() {
+        return export;
+    }
+
+    public void setExport(Object export) {
+        this.export = export;
+    }
+
+    public Map<String, Object> getSettings() {
+        return settings;
+    }
+
+    public void setSettings(Map<String, Object> settings) {
+        this.settings = settings;
     }
 
     public OffsetDateTime getCreateDate() {
