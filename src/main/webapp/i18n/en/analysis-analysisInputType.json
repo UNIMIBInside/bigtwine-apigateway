@@ -1,0 +1,9 @@
+{
+    "apigatewayApp": {
+        "AnalysisInputType": {
+            "null": "",
+            "QUERY": "QUERY",
+            "DATASET": "DATASET"
+        }
+    }
+}

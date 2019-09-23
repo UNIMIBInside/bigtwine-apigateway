@@ -2,7 +2,8 @@
     "generator-jhipster": {
         "promptValues": {
             "packageName": "it.unimib.disco.bigtwine.services.apigateway",
-            "nativeLanguage": "en"
+            "nativeLanguage": "en",
+            "microservicePath": "../analysis"
         },
         "jhipsterVersion": "5.7.2",
         "applicationType": "gateway",

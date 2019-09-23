@@ -1,0 +1,31 @@
+{
+    "apigatewayApp": {
+        "analysisAnalysisSetting": {
+            "home": {
+                "title": "AnalysisSettings",
+                "createLabel": "Genera un nuovo Analysis Setting",
+                "createOrEditLabel": "Genera o modifica un Analysis Setting"
+            },
+            "delete": {
+                "question": "Sei sicuro di volere eliminare Analysis Setting {{ id }}?"
+            },
+            "detail": {
+                "title": "Analysis Setting"
+            },
+            "name": "Name",
+            "defaultValue": "Default Value",
+            "userCanOverride": "User Can Override",
+            "userRoles": "User Roles",
+            "analysisTypes": "Analysis Types",
+            "analysisInputTypes": "Analysis Input Types",
+            "priority": "Priority"
+        }
+    },
+    "analysisApp": {
+        "analysisAnalysisSetting": {
+            "created": "&Egrave; stato generato un nuovo Analysis Setting con identificatore { param }}",
+            "updated": "&Egrave; stato aggiornato Analysis Setting identificato da {{ param }}",
+            "deleted": "&Egrave; stato eliminato Analysis Setting con identificatore {{ param }}"
+        }
+    }
+}

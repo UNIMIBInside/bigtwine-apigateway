@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="analysisSetting">
+            <h2><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.detail.title">Analysis Setting</span> {{analysisSetting.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.name">Name</span></dt>
+                <dd>
+                    <span>{{analysisSetting.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.defaultValue">Default Value</span></dt>
+                <dd>
+                    <span>{{analysisSetting.defaultValue}}</span>
+                </dd>
+                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.userCanOverride">User Can Override</span></dt>
+                <dd>
+                    <span>{{analysisSetting.userCanOverride}}</span>
+                </dd>
+                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.userRoles">User Roles</span></dt>
+                <dd>
+                    <span>{{analysisSetting.userRoles}}</span>
+                </dd>
+                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.analysisTypes">Analysis Types</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'apigatewayApp.AnalysisType.' + analysisSetting.analysisTypes}}">{{analysisSetting.analysisTypes}}</span>
+                </dd>
+                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.analysisInputTypes">Analysis Input Types</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'apigatewayApp.AnalysisInputType.' + analysisSetting.analysisInputTypes}}">{{analysisSetting.analysisInputTypes}}</span>
+                </dd>
+                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.priority">Priority</span></dt>
+                <dd>
+                    <span>{{analysisSetting.priority}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/analysis-setting', analysisSetting.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

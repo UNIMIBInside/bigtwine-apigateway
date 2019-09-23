@@ -31,6 +31,4 @@ export * from './user-management/user-management-delete-dialog.component';
 export * from './user-management/user-management-detail.component';
 export * from './user-management/user-management.component';
 export * from './user-management/user-management.route';
-export * from './analysis-management/analysis-management.component';
-export * from './analysis-management/analysis-management.route';
 export * from './admin.route';
