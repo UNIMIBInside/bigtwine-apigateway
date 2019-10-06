@@ -90,6 +90,10 @@ spring:
             enabled: false
     thymeleaf:
         mode: HTML
+    servlet:
+        multipart:
+            max-file-size: 1GB
+            max-request-size: 2GB
     cloud:
         stream:
             bindings:
