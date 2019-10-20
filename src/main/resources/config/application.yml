@@ -92,8 +92,8 @@ spring:
         mode: HTML
     servlet:
         multipart:
-            max-file-size: 1GB
-            max-request-size: 2GB
+            max-file-size: 1073741824
+            max-request-size: 2147483648
     cloud:
         stream:
             bindings:
