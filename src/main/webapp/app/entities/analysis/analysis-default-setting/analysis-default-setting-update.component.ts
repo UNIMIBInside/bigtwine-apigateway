@@ -8,6 +8,7 @@ import { IAnalysisDefaultSetting } from 'app/shared/model/analysis/analysis-defa
 import { AnalysisDefaultSettingService } from './analysis-default-setting.service';
 import { IAnalysisSetting } from 'app/shared/model/analysis/analysis-setting.model';
 import { AnalysisSettingService } from 'app/entities/analysis/analysis-setting';
+import { UserService } from 'app/core';
 
 @Component({
     selector: 'jhi-analysis-default-setting-update',
@@ -16,6 +17,7 @@ import { AnalysisSettingService } from 'app/entities/analysis/analysis-setting';
 export class AnalysisDefaultSettingUpdateComponent implements OnInit {
     analysisDefaultSetting: IAnalysisDefaultSetting;
     isSaving: boolean;
+    authorities: any[];
 
     analysissettings: IAnalysisSetting[];
 
@@ -23,7 +25,8 @@ export class AnalysisDefaultSettingUpdateComponent implements OnInit {
         protected jhiAlertService: JhiAlertService,
         protected analysisDefaultSettingService: AnalysisDefaultSettingService,
         protected analysisSettingService: AnalysisSettingService,
-        protected activatedRoute: ActivatedRoute
+        protected activatedRoute: ActivatedRoute,
+        protected userService: UserService
     ) {}
 
     ngOnInit() {
@@ -37,6 +40,11 @@ export class AnalysisDefaultSettingUpdateComponent implements OnInit {
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
+        this.authorities = [];
+        this.userService.authorities().subscribe(authorities => {
+            console.log(authorities, 'authorities');
+            this.authorities = authorities;
+        });
     }
 
     previousState() {

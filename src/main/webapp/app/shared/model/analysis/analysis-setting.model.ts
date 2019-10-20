@@ -23,7 +23,7 @@ export interface IAnalysisSetting {
     userVisible?: boolean;
     options?: any;
     analysisType?: AnalysisType;
-    analysisInputTypes?: AnalysisInputType;
+    analysisInputTypes?: AnalysisInputType[];
 }
 
 export class AnalysisSetting implements IAnalysisSetting {
@@ -34,7 +34,7 @@ export class AnalysisSetting implements IAnalysisSetting {
         public userVisible?: boolean,
         public options?: any,
         public analysisType?: AnalysisType,
-        public analysisInputTypes?: AnalysisInputType
+        public analysisInputTypes?: AnalysisInputType[]
     ) {
         this.userVisible = this.userVisible || false;
     }

@@ -24,7 +24,7 @@
                 <dt><span jhiTranslate="apigatewayApp.analysisAnalysisDefaultSetting.setting">Setting</span></dt>
                 <dd>
                     <div *ngIf="analysisDefaultSetting.setting">
-                        <a [routerLink]="['/analysis-setting', analysisDefaultSetting.setting?.id, 'view']">{{analysisDefaultSetting.setting?.id}}</a>
+                        <a [routerLink]="['/analysis-setting', analysisDefaultSetting.setting?.id, 'view']">{{analysisDefaultSetting.setting?.name}}</a>
                     </div>
                 </dd>
             </dl>

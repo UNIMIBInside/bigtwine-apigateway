@@ -3,7 +3,7 @@ import { IAnalysisSetting } from 'app/shared/model/analysis/analysis-setting.mod
 export interface IAnalysisDefaultSetting {
     id?: string;
     defaultValue?: string;
-    userRoles?: string;
+    userRoles?: any[];
     userCanOverride?: boolean;
     priority?: number;
     setting?: IAnalysisSetting;
@@ -13,7 +13,7 @@ export class AnalysisDefaultSetting implements IAnalysisDefaultSetting {
     constructor(
         public id?: string,
         public defaultValue?: string,
-        public userRoles?: string,
+        public userRoles?: any[],
         public userCanOverride?: boolean,
         public priority?: number,
         public setting?: IAnalysisSetting

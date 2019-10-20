@@ -27,7 +27,7 @@
                 </dd>
                 <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.analysisInputTypes">Analysis Input Types</span></dt>
                 <dd>
-                    <span jhiTranslate="{{'apigatewayApp.AnalysisInputType.' + analysisSetting.analysisInputTypes}}">{{analysisSetting.analysisInputTypes}}</span>
+                    <span>{{analysisSetting.analysisInputTypes?.join(', ')}}</span>
                 </dd>
             </dl>
 

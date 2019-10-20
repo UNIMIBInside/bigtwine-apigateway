@@ -32,7 +32,7 @@
                 <td>{{analysisSetting.userVisible}}</td>
                 <td>{{analysisSetting.options}}</td>
                 <td jhiTranslate="{{'apigatewayApp.AnalysisType.' + analysisSetting.analysisType}}">{{analysisSetting.analysisType}}</td>
-                <td jhiTranslate="{{'apigatewayApp.AnalysisInputType.' + analysisSetting.analysisInputTypes}}">{{analysisSetting.analysisInputTypes}}</td>
+                <td>{{analysisSetting.analysisInputTypes.join(', ')}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

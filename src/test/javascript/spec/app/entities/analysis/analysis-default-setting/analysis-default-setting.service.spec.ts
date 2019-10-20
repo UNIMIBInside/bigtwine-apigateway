@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(AnalysisDefaultSettingService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new AnalysisDefaultSetting('ID', 'AAAAAAA', 'AAAAAAA', false, 0);
+            elemDefault = new AnalysisDefaultSetting('ID', 'AAAAAAA', ['AAAAAAA'], false, 0);
         });
 
         describe('Service methods', async () => {
@@ -56,7 +56,7 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         defaultValue: 'BBBBBB',
-                        userRoles: 'BBBBBB',
+                        userRoles: ['BBBBBB'],
                         userCanOverride: true,
                         priority: 1
                     },
@@ -76,7 +76,7 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         defaultValue: 'BBBBBB',
-                        userRoles: 'BBBBBB',
+                        userRoles: ['BBBBBB'],
                         userCanOverride: true,
                         priority: 1
                     },

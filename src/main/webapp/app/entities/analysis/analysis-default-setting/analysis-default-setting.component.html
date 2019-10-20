@@ -19,7 +19,7 @@
             <th jhiSortBy="userRoles"><span jhiTranslate="apigatewayApp.analysisAnalysisDefaultSetting.userRoles">User Roles</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="userCanOverride"><span jhiTranslate="apigatewayApp.analysisAnalysisDefaultSetting.userCanOverride">User Can Override</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="priority"><span jhiTranslate="apigatewayApp.analysisAnalysisDefaultSetting.priority">Priority</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="setting.id"><span jhiTranslate="apigatewayApp.analysisAnalysisDefaultSetting.setting">Setting</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="setting.name"><span jhiTranslate="apigatewayApp.analysisAnalysisDefaultSetting.setting">Setting</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -32,7 +32,7 @@
                 <td>{{analysisDefaultSetting.priority}}</td>
                 <td>
                     <div *ngIf="analysisDefaultSetting.setting">
-                        <a [routerLink]="['../analysis-setting', analysisDefaultSetting.setting?.id, 'view' ]" >{{analysisDefaultSetting.setting?.id}}</a>
+                        <a [routerLink]="['../analysis-setting', analysisDefaultSetting.setting?.id, 'view' ]" >{{analysisDefaultSetting.setting?.name}}</a>
                     </div>
                 </td>
                 <td class="text-right">
