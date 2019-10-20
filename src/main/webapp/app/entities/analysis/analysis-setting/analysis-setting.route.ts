@@ -37,7 +37,7 @@ export const analysisSettingRoute: Routes = [
             pagingParams: JhiResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             defaultSort: 'id,asc',
             pageTitle: 'apigatewayApp.analysisAnalysisSetting.home.title'
         },
@@ -50,7 +50,7 @@ export const analysisSettingRoute: Routes = [
             analysisSetting: AnalysisSettingResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'apigatewayApp.analysisAnalysisSetting.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const analysisSettingRoute: Routes = [
             analysisSetting: AnalysisSettingResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'apigatewayApp.analysisAnalysisSetting.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const analysisSettingRoute: Routes = [
             analysisSetting: AnalysisSettingResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'apigatewayApp.analysisAnalysisSetting.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const analysisSettingPopupRoute: Routes = [
             analysisSetting: AnalysisSettingResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'apigatewayApp.analysisAnalysisSetting.home.title'
         },
         canActivate: [UserRouteAccessService],
