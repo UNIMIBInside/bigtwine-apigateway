@@ -10,28 +10,50 @@
                         [(ngModel)]="analysisSetting.id" readonly />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="apigatewayApp.analysisAnalysisSetting.name" for="field_name">Name</label>
+                    <label class="form-control-label" jhiTranslate="apigatewayApp.analysisAnalysisSetting.name" for="field_name" [ngbTooltip]="'apigatewayApp.analysisAnalysisSetting.help.name' | translate">Name</label>
                     <input type="text" class="form-control" name="name" id="field_name"
-                        [(ngModel)]="analysisSetting.name" />
+                        [(ngModel)]="analysisSetting.name" required pattern="[a-z0-9-]+"/>
+                    <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.name?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'Name' }">
+                            This field should follow pattern for "Name".
+                        </small>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="apigatewayApp.analysisAnalysisSetting.defaultValue" for="field_defaultValue">Default Value</label>
-                    <input type="text" class="form-control" name="defaultValue" id="field_defaultValue"
-                        [(ngModel)]="analysisSetting.defaultValue" />
+                    <label class="form-control-label" jhiTranslate="apigatewayApp.analysisAnalysisSetting.type" for="field_type">Type</label>
+                    <select class="form-control" name="type" [(ngModel)]="analysisSetting.type" id="field_type"  required>
+                        <option value="NUMBER">{{'apigatewayApp.AnalysisSettingType.NUMBER' | translate}}</option>
+                        <option value="STRING">{{'apigatewayApp.AnalysisSettingType.STRING' | translate}}</option>
+                        <option value="TEXT">{{'apigatewayApp.AnalysisSettingType.TEXT' | translate}}</option>
+                        <option value="BOOLEAN">{{'apigatewayApp.AnalysisSettingType.BOOLEAN' | translate}}</option>
+                        <option value="SINGLE_CHOICE">{{'apigatewayApp.AnalysisSettingType.SINGLE_CHOICE' | translate}}</option>
+                        <option value="MULTIPLE_CHOICES">{{'apigatewayApp.AnalysisSettingType.MULTIPLE_CHOICES' | translate}}</option>
+                    </select>
+                    <div [hidden]="!(editForm.controls.type?.dirty && editForm.controls.type?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.type?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="apigatewayApp.analysisAnalysisSetting.userCanOverride" for="field_userCanOverride">User Can Override</label>
-                    <input type="checkbox" class="form-control" name="userCanOverride" id="field_userCanOverride"
-                        [(ngModel)]="analysisSetting.userCanOverride" />
+                    <label class="form-control-label" jhiTranslate="apigatewayApp.analysisAnalysisSetting.userVisible" for="field_userVisible">User Visible</label>
+                    <input type="checkbox" class="form-control" name="userVisible" id="field_userVisible"
+                        [(ngModel)]="analysisSetting.userVisible" />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="apigatewayApp.analysisAnalysisSetting.userRoles" for="field_userRoles">User Roles</label>
-                    <input type="text" class="form-control" name="userRoles" id="field_userRoles"
-                        [(ngModel)]="analysisSetting.userRoles" />
+                    <label class="form-control-label" jhiTranslate="apigatewayApp.analysisAnalysisSetting.options" for="field_options" [ngbTooltip]="'apigatewayApp.analysisAnalysisSetting.help.options' | translate">Options</label>
+                    <textarea class="form-control" name="options" id="field_options"
+                        [(ngModel)]="analysisSetting.options" ></textarea>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="apigatewayApp.analysisAnalysisSetting.analysisTypes" for="field_analysisTypes">Analysis Types</label>
-                    <select class="form-control" name="analysisTypes" [(ngModel)]="analysisSetting.analysisTypes" id="field_analysisTypes" >
+                    <label class="form-control-label" jhiTranslate="apigatewayApp.analysisAnalysisSetting.analysisType" for="field_analysisType">Analysis Type</label>
+                    <select class="form-control" name="analysisType" [(ngModel)]="analysisSetting.analysisType" id="field_analysisType" >
                         <option value="TWITTER_NEEL">{{'apigatewayApp.AnalysisType.TWITTER_NEEL' | translate}}</option>
                     </select>
                 </div>
@@ -41,11 +63,6 @@
                         <option value="QUERY">{{'apigatewayApp.AnalysisInputType.QUERY' | translate}}</option>
                         <option value="DATASET">{{'apigatewayApp.AnalysisInputType.DATASET' | translate}}</option>
                     </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="apigatewayApp.analysisAnalysisSetting.priority" for="field_priority">Priority</label>
-                    <input type="number" class="form-control" name="priority" id="field_priority"
-                        [(ngModel)]="analysisSetting.priority" />
                 </div>
 
             </div>

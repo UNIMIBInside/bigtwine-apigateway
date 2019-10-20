@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { JhiDataUtils } from 'ng-jhipster';
 
 import { IAnalysisSetting } from 'app/shared/model/analysis/analysis-setting.model';
 
@@ -10,7 +11,7 @@ import { IAnalysisSetting } from 'app/shared/model/analysis/analysis-setting.mod
 export class AnalysisSettingDetailComponent implements OnInit {
     analysisSetting: IAnalysisSetting;
 
-    constructor(protected activatedRoute: ActivatedRoute) {}
+    constructor(protected dataUtils: JhiDataUtils, protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ analysisSetting }) => {
@@ -18,6 +19,13 @@ export class AnalysisSettingDetailComponent implements OnInit {
         });
     }
 
+    byteSize(field) {
+        return this.dataUtils.byteSize(field);
+    }
+
+    openFile(contentType, field) {
+        return this.dataUtils.openFile(contentType, field);
+    }
     previousState() {
         window.history.back();
     }

@@ -13,12 +13,15 @@
                 "title": "Analysis Setting"
             },
             "name": "Name",
-            "defaultValue": "Default Value",
-            "userCanOverride": "User Can Override",
-            "userRoles": "User Roles",
-            "analysisTypes": "Analysis Types",
+            "type": "Type",
+            "userVisible": "User Visible",
+            "options": "Options",
+            "analysisType": "Analysis Type",
             "analysisInputTypes": "Analysis Input Types",
-            "priority": "Priority"
+            "help": {
+                "name": "Setting name, should be alphanumeric and lowercase",
+                "options": "Each option on separated line with the following format: &lt;value&gt;:&lt;name&gt;"
+            }
         }
     },
     "analysisApp": {

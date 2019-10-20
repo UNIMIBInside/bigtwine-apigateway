@@ -91,6 +91,14 @@ will generate few files:
     create src/main/webapp/app/my-component/my-component.component.ts
     update src/main/webapp/app/app.module.ts
 
+### Import microservices entity
+
+Run the following command with the name of the entity given within microservice:
+  
+ jhipster entity <name>
+
+it will prompt you to enter a path to the microservice.
+
 ## Building for production
 
 To optimize the apigateway application for production, run:

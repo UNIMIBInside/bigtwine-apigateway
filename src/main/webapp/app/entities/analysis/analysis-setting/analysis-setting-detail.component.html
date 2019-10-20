@@ -5,33 +5,29 @@
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.name">Name</span></dt>
+                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.name" [ngbTooltip]="'apigatewayApp.analysisAnalysisSetting.help.name' | translate">Name</span></dt>
                 <dd>
                     <span>{{analysisSetting.name}}</span>
                 </dd>
-                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.defaultValue">Default Value</span></dt>
+                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.type">Type</span></dt>
                 <dd>
-                    <span>{{analysisSetting.defaultValue}}</span>
+                    <span jhiTranslate="{{'apigatewayApp.AnalysisSettingType.' + analysisSetting.type}}">{{analysisSetting.type}}</span>
                 </dd>
-                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.userCanOverride">User Can Override</span></dt>
+                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.userVisible">User Visible</span></dt>
                 <dd>
-                    <span>{{analysisSetting.userCanOverride}}</span>
+                    <span>{{analysisSetting.userVisible}}</span>
                 </dd>
-                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.userRoles">User Roles</span></dt>
+                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.options" [ngbTooltip]="'apigatewayApp.analysisAnalysisSetting.help.options' | translate">Options</span></dt>
                 <dd>
-                    <span>{{analysisSetting.userRoles}}</span>
+                    <span>{{analysisSetting.options}}</span>
                 </dd>
-                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.analysisTypes">Analysis Types</span></dt>
+                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.analysisType">Analysis Type</span></dt>
                 <dd>
-                    <span jhiTranslate="{{'apigatewayApp.AnalysisType.' + analysisSetting.analysisTypes}}">{{analysisSetting.analysisTypes}}</span>
+                    <span jhiTranslate="{{'apigatewayApp.AnalysisType.' + analysisSetting.analysisType}}">{{analysisSetting.analysisType}}</span>
                 </dd>
                 <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.analysisInputTypes">Analysis Input Types</span></dt>
                 <dd>
                     <span jhiTranslate="{{'apigatewayApp.AnalysisInputType.' + analysisSetting.analysisInputTypes}}">{{analysisSetting.analysisInputTypes}}</span>
-                </dd>
-                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.priority">Priority</span></dt>
-                <dd>
-                    <span>{{analysisSetting.priority}}</span>
                 </dd>
             </dl>
 

@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { ApigatewayAnalysisModule as AnalysisAnalysisModule } from './analysis/analysis/analysis.module';
 import { ApigatewayAnalysisSettingModule as AnalysisAnalysisSettingModule } from './analysis/analysis-setting/analysis-setting.module';
+import { ApigatewayAnalysisDefaultSettingModule as AnalysisAnalysisDefaultSettingModule } from './analysis/analysis-default-setting/analysis-default-setting.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -9,6 +10,7 @@ import { ApigatewayAnalysisSettingModule as AnalysisAnalysisSettingModule } from
     imports: [
         AnalysisAnalysisModule,
         AnalysisAnalysisSettingModule,
+        AnalysisAnalysisDefaultSettingModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

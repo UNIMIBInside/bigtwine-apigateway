@@ -2,21 +2,21 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { JhiEventManager, JhiParseLinks, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
+import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
-import { IAnalysisSetting } from 'app/shared/model/analysis/analysis-setting.model';
+import { IAnalysisDefaultSetting } from 'app/shared/model/analysis/analysis-default-setting.model';
 import { AccountService } from 'app/core';
 
 import { ITEMS_PER_PAGE } from 'app/shared';
-import { AnalysisSettingService } from './analysis-setting.service';
+import { AnalysisDefaultSettingService } from './analysis-default-setting.service';
 
 @Component({
-    selector: 'jhi-analysis-setting',
-    templateUrl: './analysis-setting.component.html'
+    selector: 'jhi-analysis-default-setting',
+    templateUrl: './analysis-default-setting.component.html'
 })
-export class AnalysisSettingComponent implements OnInit, OnDestroy {
+export class AnalysisDefaultSettingComponent implements OnInit, OnDestroy {
     currentAccount: any;
-    analysisSettings: IAnalysisSetting[];
+    analysisDefaultSettings: IAnalysisDefaultSetting[];
     error: any;
     success: any;
     eventSubscriber: Subscription;
@@ -31,12 +31,11 @@ export class AnalysisSettingComponent implements OnInit, OnDestroy {
     reverse: any;
 
     constructor(
-        protected analysisSettingService: AnalysisSettingService,
+        protected analysisDefaultSettingService: AnalysisDefaultSettingService,
         protected parseLinks: JhiParseLinks,
         protected jhiAlertService: JhiAlertService,
         protected accountService: AccountService,
         protected activatedRoute: ActivatedRoute,
-        protected dataUtils: JhiDataUtils,
         protected router: Router,
         protected eventManager: JhiEventManager
     ) {
@@ -50,14 +49,14 @@ export class AnalysisSettingComponent implements OnInit, OnDestroy {
     }
 
     loadAll() {
-        this.analysisSettingService
+        this.analysisDefaultSettingService
             .query({
                 page: this.page - 1,
                 size: this.itemsPerPage,
                 sort: this.sort()
             })
             .subscribe(
-                (res: HttpResponse<IAnalysisSetting[]>) => this.paginateAnalysisSettings(res.body, res.headers),
+                (res: HttpResponse<IAnalysisDefaultSetting[]>) => this.paginateAnalysisDefaultSettings(res.body, res.headers),
                 (res: HttpErrorResponse) => this.onError(res.message)
             );
     }
@@ -70,7 +69,7 @@ export class AnalysisSettingComponent implements OnInit, OnDestroy {
     }
 
     transition() {
-        this.router.navigate(['/analysis-setting'], {
+        this.router.navigate(['/analysis-default-setting'], {
             queryParams: {
                 page: this.page,
                 size: this.itemsPerPage,
@@ -83,7 +82,7 @@ export class AnalysisSettingComponent implements OnInit, OnDestroy {
     clear() {
         this.page = 0;
         this.router.navigate([
-            '/analysis-setting',
+            '/analysis-default-setting',
             {
                 page: this.page,
                 sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
@@ -97,27 +96,19 @@ export class AnalysisSettingComponent implements OnInit, OnDestroy {
         this.accountService.identity().then(account => {
             this.currentAccount = account;
         });
-        this.registerChangeInAnalysisSettings();
+        this.registerChangeInAnalysisDefaultSettings();
     }
 
     ngOnDestroy() {
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    trackId(index: number, item: IAnalysisSetting) {
+    trackId(index: number, item: IAnalysisDefaultSetting) {
         return item.id;
     }
 
-    byteSize(field) {
-        return this.dataUtils.byteSize(field);
-    }
-
-    openFile(contentType, field) {
-        return this.dataUtils.openFile(contentType, field);
-    }
-
-    registerChangeInAnalysisSettings() {
-        this.eventSubscriber = this.eventManager.subscribe('analysisSettingListModification', response => this.loadAll());
+    registerChangeInAnalysisDefaultSettings() {
+        this.eventSubscriber = this.eventManager.subscribe('analysisDefaultSettingListModification', response => this.loadAll());
     }
 
     sort() {
@@ -128,11 +119,11 @@ export class AnalysisSettingComponent implements OnInit, OnDestroy {
         return result;
     }
 
-    protected paginateAnalysisSettings(data: IAnalysisSetting[], headers: HttpHeaders) {
+    protected paginateAnalysisDefaultSettings(data: IAnalysisDefaultSetting[], headers: HttpHeaders) {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
         this.queryCount = this.totalItems;
-        this.analysisSettings = data;
+        this.analysisDefaultSettings = data;
     }
 
     protected onError(errorMessage: string) {

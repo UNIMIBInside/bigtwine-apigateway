@@ -16,12 +16,11 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="name"><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="defaultValue"><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.defaultValue">Default Value</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="userCanOverride"><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.userCanOverride">User Can Override</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="userRoles"><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.userRoles">User Roles</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="analysisTypes"><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.analysisTypes">Analysis Types</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="type"><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.type">Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="userVisible"><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.userVisible">User Visible</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="options"><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.options">Options</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="analysisType"><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.analysisType">Analysis Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="analysisInputTypes"><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.analysisInputTypes">Analysis Input Types</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="priority"><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.priority">Priority</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -29,12 +28,11 @@
             <tr *ngFor="let analysisSetting of analysisSettings ;trackBy: trackId">
                 <td><a [routerLink]="['/analysis-setting', analysisSetting.id, 'view' ]">{{analysisSetting.id}}</a></td>
                 <td>{{analysisSetting.name}}</td>
-                <td>{{analysisSetting.defaultValue}}</td>
-                <td>{{analysisSetting.userCanOverride}}</td>
-                <td>{{analysisSetting.userRoles}}</td>
-                <td jhiTranslate="{{'apigatewayApp.AnalysisType.' + analysisSetting.analysisTypes}}">{{analysisSetting.analysisTypes}}</td>
+                <td jhiTranslate="{{'apigatewayApp.AnalysisSettingType.' + analysisSetting.type}}">{{analysisSetting.type}}</td>
+                <td>{{analysisSetting.userVisible}}</td>
+                <td>{{analysisSetting.options}}</td>
+                <td jhiTranslate="{{'apigatewayApp.AnalysisType.' + analysisSetting.analysisType}}">{{analysisSetting.analysisType}}</td>
                 <td jhiTranslate="{{'apigatewayApp.AnalysisInputType.' + analysisSetting.analysisInputTypes}}">{{analysisSetting.analysisInputTypes}}</td>
-                <td>{{analysisSetting.priority}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

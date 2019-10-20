@@ -1,0 +1,74 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="apigatewayApp.analysisAnalysisDefaultSetting.home.title">Analysis Default Settings</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-analysis-default-setting" [routerLink]="['/analysis-default-setting/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="apigatewayApp.analysisAnalysisDefaultSetting.home.createLabel">
+            Create new Analysis Default Setting
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="analysisDefaultSettings">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="defaultValue"><span jhiTranslate="apigatewayApp.analysisAnalysisDefaultSetting.defaultValue">Default Value</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="userRoles"><span jhiTranslate="apigatewayApp.analysisAnalysisDefaultSetting.userRoles">User Roles</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="userCanOverride"><span jhiTranslate="apigatewayApp.analysisAnalysisDefaultSetting.userCanOverride">User Can Override</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="priority"><span jhiTranslate="apigatewayApp.analysisAnalysisDefaultSetting.priority">Priority</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="setting.id"><span jhiTranslate="apigatewayApp.analysisAnalysisDefaultSetting.setting">Setting</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let analysisDefaultSetting of analysisDefaultSettings ;trackBy: trackId">
+                <td><a [routerLink]="['/analysis-default-setting', analysisDefaultSetting.id, 'view' ]">{{analysisDefaultSetting.id}}</a></td>
+                <td>{{analysisDefaultSetting.defaultValue}}</td>
+                <td>{{analysisDefaultSetting.userRoles}}</td>
+                <td>{{analysisDefaultSetting.userCanOverride}}</td>
+                <td>{{analysisDefaultSetting.priority}}</td>
+                <td>
+                    <div *ngIf="analysisDefaultSetting.setting">
+                        <a [routerLink]="['../analysis-setting', analysisDefaultSetting.setting?.id, 'view' ]" >{{analysisDefaultSetting.setting?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/analysis-default-setting', analysisDefaultSetting.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/analysis-default-setting', analysisDefaultSetting.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'analysis-default-setting/'+ analysisDefaultSetting.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="analysisDefaultSettings && analysisDefaultSettings.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>
