@@ -16,6 +16,7 @@
             "type": "Type",
             "userVisible": "User Visible",
             "options": "Options",
+            "description": "Description",
             "analysisType": "Analysis Type",
             "analysisInputTypes": "Analysis Input Types",
             "help": {

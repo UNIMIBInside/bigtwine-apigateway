@@ -47,6 +47,11 @@
                         [(ngModel)]="analysisSetting.userVisible" />
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="apigatewayApp.analysisAnalysisSetting.description" for="field_description">Description</label>
+                    <textarea class="form-control" name="description" id="field_description"
+                              [(ngModel)]="analysisSetting.description" ></textarea>
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="apigatewayApp.analysisAnalysisSetting.options" for="field_options" [ngbTooltip]="'apigatewayApp.analysisAnalysisSetting.help.options' | translate">Options</label>
                     <textarea class="form-control" name="options" id="field_options"
                         [(ngModel)]="analysisSetting.options" ></textarea>

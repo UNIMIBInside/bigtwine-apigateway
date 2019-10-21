@@ -21,6 +21,7 @@ export interface IAnalysisSetting {
     name?: string;
     type?: AnalysisSettingType;
     userVisible?: boolean;
+    description?: string;
     options?: any;
     analysisType?: AnalysisType;
     analysisInputTypes?: AnalysisInputType[];
@@ -32,6 +33,7 @@ export class AnalysisSetting implements IAnalysisSetting {
         public name?: string,
         public type?: AnalysisSettingType,
         public userVisible?: boolean,
+        public description?: string,
         public options?: any,
         public analysisType?: AnalysisType,
         public analysisInputTypes?: AnalysisInputType[]

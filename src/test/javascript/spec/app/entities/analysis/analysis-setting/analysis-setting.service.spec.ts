@@ -27,9 +27,16 @@ describe('Service Tests', () => {
             service = injector.get(AnalysisSettingService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new AnalysisSetting('ID', 'AAAAAAA', AnalysisSettingType.NUMBER, false, 'AAAAAAA', AnalysisType.TWITTER_NEEL, [
-                AnalysisInputType.QUERY
-            ]);
+            elemDefault = new AnalysisSetting(
+                'ID',
+                'AAAAAAA',
+                AnalysisSettingType.NUMBER,
+                false,
+                'AAAAAAA',
+                'AAAAAAA',
+                AnalysisType.TWITTER_NEEL,
+                [AnalysisInputType.QUERY]
+            );
         });
 
         describe('Service methods', async () => {
