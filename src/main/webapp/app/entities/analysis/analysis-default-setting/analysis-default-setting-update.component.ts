@@ -53,6 +53,15 @@ export class AnalysisDefaultSettingUpdateComponent implements OnInit {
 
     save() {
         this.isSaving = true;
+
+        if (!this.analysisDefaultSetting.defaultValue) {
+            this.analysisDefaultSetting.defaultValue = null;
+        } else {
+            try {
+                this.analysisDefaultSetting.defaultValue = JSON.parse(this.analysisDefaultSetting.defaultValue);
+            } catch (e) {}
+        }
+
         if (this.analysisDefaultSetting.id !== undefined) {
             this.subscribeToSaveResponse(this.analysisDefaultSettingService.update(this.analysisDefaultSetting));
         } else {
