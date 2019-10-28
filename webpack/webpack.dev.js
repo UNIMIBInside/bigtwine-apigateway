@@ -135,6 +135,9 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
                 clients: {
                     heartbeatTimeout: 60000
                 }
+            },
+            ui: {
+                port: 3002
             }
         }, {
             reload: false
