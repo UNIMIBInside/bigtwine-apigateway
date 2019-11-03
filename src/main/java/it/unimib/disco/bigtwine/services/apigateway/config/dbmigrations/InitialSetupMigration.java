@@ -91,7 +91,7 @@ public class InitialSetupMigration {
         User demoUser = new User();
         demoUser.setId("demo");
         demoUser.setLogin("demo");
-        demoUser.setPassword("$2a$10$T7HeDHlwDli2KYOvapyAeupZhCEvfLKqhj7P3Gpor779DIS.c.xJe"); // demo
+        demoUser.setPassword("$2a$10$/ZpS8vDqQFpMYdtLF7DUCOL0sfsjmglU9FZA.568EQguyK/9x9rjy"); // demo
         demoUser.setFirstName("");
         demoUser.setLastName("Demo");
         demoUser.setEmail("demo@bigtwine");
