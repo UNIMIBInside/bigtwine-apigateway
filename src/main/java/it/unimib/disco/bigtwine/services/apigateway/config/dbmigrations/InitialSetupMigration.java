@@ -20,16 +20,28 @@ public class InitialSetupMigration {
     public void addAuthorities(MongoTemplate mongoTemplate) {
         Authority adminAuthority = new Authority();
         adminAuthority.setName(AuthoritiesConstants.ADMIN);
+        Authority demoAuthority = new Authority();
+        demoAuthority.setName(AuthoritiesConstants.DEMO);
         Authority userAuthority = new Authority();
         userAuthority.setName(AuthoritiesConstants.USER);
+        Authority userProAuthority = new Authority();
+        userProAuthority.setName(AuthoritiesConstants.USER_PRO);
+        Authority userSocialAuthority = new Authority();
+        userSocialAuthority.setName(AuthoritiesConstants.USER_SOCIAL);
+
         mongoTemplate.save(adminAuthority);
+        mongoTemplate.save(demoAuthority);
         mongoTemplate.save(userAuthority);
+        mongoTemplate.save(userProAuthority);
+        mongoTemplate.save(userSocialAuthority);
     }
 
     @ChangeSet(order = "02", author = "initiator", id = "02-addUsers")
     public void addUsers(MongoTemplate mongoTemplate) {
         Authority adminAuthority = new Authority();
         adminAuthority.setName(AuthoritiesConstants.ADMIN);
+        Authority demoAuthority = new Authority();
+        demoAuthority.setName(AuthoritiesConstants.DEMO);
         Authority userAuthority = new Authority();
         userAuthority.setName(AuthoritiesConstants.USER);
 
@@ -39,7 +51,7 @@ public class InitialSetupMigration {
         systemUser.setPassword("$2a$10$mE.qmcV0mFU5NcKh73TZx.z4ueI/.bDWbj0T1BYyqP481kGGarKLG");
         systemUser.setFirstName("");
         systemUser.setLastName("System");
-        systemUser.setEmail("system@localhost");
+        systemUser.setEmail("system@bigtwine");
         systemUser.setActivated(true);
         systemUser.setLangKey("en");
         systemUser.setCreatedBy(systemUser.getLogin());
@@ -54,7 +66,7 @@ public class InitialSetupMigration {
         anonymousUser.setPassword("$2a$10$j8S5d7Sr7.8VTOYNviDPOeWX8KcYILUVJBsYV83Y5NtECayypx9lO");
         anonymousUser.setFirstName("Anonymous");
         anonymousUser.setLastName("User");
-        anonymousUser.setEmail("anonymous@localhost");
+        anonymousUser.setEmail("anonymous@bigtwine");
         anonymousUser.setActivated(true);
         anonymousUser.setLangKey("en");
         anonymousUser.setCreatedBy(systemUser.getLogin());
@@ -64,10 +76,10 @@ public class InitialSetupMigration {
         User adminUser = new User();
         adminUser.setId("user-2");
         adminUser.setLogin("admin");
-        adminUser.setPassword("$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC");
+        adminUser.setPassword("$2a$10$3epRKTp8ccIa.D0W6FVjaONcIh0tMd4tVraaDSkiRB6S4zM74YHXG"); // B1gtw1n3!
         adminUser.setFirstName("admin");
         adminUser.setLastName("Administrator");
-        adminUser.setEmail("admin@localhost");
+        adminUser.setEmail("admin@bigtwine");
         adminUser.setActivated(true);
         adminUser.setLangKey("en");
         adminUser.setCreatedBy(systemUser.getLogin());
@@ -76,18 +88,19 @@ public class InitialSetupMigration {
         adminUser.getAuthorities().add(userAuthority);
         mongoTemplate.save(adminUser);
 
-        User userUser = new User();
-        userUser.setId("user-3");
-        userUser.setLogin("user");
-        userUser.setPassword("$2a$10$VEjxo0jq2YG9Rbk2HmX9S.k1uZBGYUHdUcid3g/vfiEl7lwWgOH/K");
-        userUser.setFirstName("");
-        userUser.setLastName("User");
-        userUser.setEmail("user@localhost");
-        userUser.setActivated(true);
-        userUser.setLangKey("en");
-        userUser.setCreatedBy(systemUser.getLogin());
-        userUser.setCreatedDate(Instant.now());
-        userUser.getAuthorities().add(userAuthority);
-        mongoTemplate.save(userUser);
+        User demoUser = new User();
+        demoUser.setId("demo");
+        demoUser.setLogin("demo");
+        demoUser.setPassword("$2a$10$T7HeDHlwDli2KYOvapyAeupZhCEvfLKqhj7P3Gpor779DIS.c.xJe"); // demo
+        demoUser.setFirstName("");
+        demoUser.setLastName("Demo");
+        demoUser.setEmail("demo@bigtwine");
+        demoUser.setActivated(true);
+        demoUser.setLangKey("en");
+        demoUser.setCreatedBy(systemUser.getLogin());
+        demoUser.setCreatedDate(Instant.now());
+        demoUser.getAuthorities().add(demoAuthority);
+        demoUser.getAuthorities().add(userAuthority);
+        mongoTemplate.save(demoUser);
     }
 }
