@@ -13,7 +13,7 @@ public class AnalysisDTO {
     private String visibility = null;
     private Object input = null;
     private double progress;
-    private Object export = null;
+    private List<Object> exports = null;
     private Map<String, Object> settings = null;
     private OffsetDateTime createDate;
     private OffsetDateTime updateDate;
@@ -82,12 +82,12 @@ public class AnalysisDTO {
         this.progress = progress;
     }
 
-    public Object getExport() {
-        return export;
+    public List<Object> getExports() {
+        return exports;
     }
 
-    public void setExport(Object export) {
-        this.export = export;
+    public void setExports(List<Object> exports) {
+        this.exports = exports;
     }
 
     public Map<String, Object> getSettings() {

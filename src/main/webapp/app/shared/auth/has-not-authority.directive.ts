@@ -7,7 +7,7 @@ import { AccountService } from 'app/core/auth/account.service';
  *
  * @howToUse
  * ```
- *     <some-element *btwHasNotAuthority="'ROLE_ADMIN'">...</some-element>
+ *     <some-element *jhiHasNotAuthority="'ROLE_ADMIN'">...</some-element>
  *
  * ```
  */
@@ -24,7 +24,7 @@ export class HasNotAuthorityDirective {
     ) {}
 
     @Input()
-    set btwHasNotAuthority(value: string) {
+    set jhiHasNotAuthority(value: string) {
         this.authority = value;
         this.updateView();
         // Get notified each time authentication state changes.

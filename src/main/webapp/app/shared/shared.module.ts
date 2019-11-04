@@ -2,8 +2,13 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 
 import { NgbDateMomentAdapter } from './util/datepicker-adapter';
-import { ApigatewaySharedLibsModule, ApigatewaySharedCommonModule, JhiLoginModalComponent, HasAnyAuthorityDirective } from './';
-import { HasNotAuthorityDirective } from 'app/shared/auth/has-not-authority.directive';
+import {
+    ApigatewaySharedLibsModule,
+    ApigatewaySharedCommonModule,
+    JhiLoginModalComponent,
+    HasAnyAuthorityDirective,
+    HasNotAuthorityDirective
+} from './';
 
 @NgModule({
     imports: [ApigatewaySharedLibsModule, ApigatewaySharedCommonModule],
