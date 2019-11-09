@@ -13,15 +13,14 @@
                 "title": "Analysis Setting"
             },
             "name": "Name",
-            "type": "Type",
-            "userVisible": "User Visible",
-            "options": "Options",
+            "label": "Label",
             "description": "Description",
-            "analysisType": "Analysis Type",
-            "analysisInputTypes": "Analysis Input Types",
+            "type": "Type",
+            "visibility": "Visibility",
+            "options": "Options",
             "help": {
                 "name": "Setting name, should be alphanumeric and lowercase",
-                "options": "Each option on separated line with the following format: <value>:<name>"
+                "options": "Each option on separated line with the following format: &lt;value&gt;:&lt;name&gt;"
             }
         }
     },

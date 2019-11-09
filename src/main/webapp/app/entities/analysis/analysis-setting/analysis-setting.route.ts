@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
-import { JhiPaginationUtil, JhiResolvePagingParams } from 'ng-jhipster';
 import { UserRouteAccessService } from 'app/core';
 import { Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
@@ -33,12 +32,8 @@ export const analysisSettingRoute: Routes = [
     {
         path: 'analysis-setting',
         component: AnalysisSettingComponent,
-        resolve: {
-            pagingParams: JhiResolvePagingParams
-        },
         data: {
             authorities: ['ROLE_ADMIN'],
-            defaultSort: 'id,asc',
             pageTitle: 'apigatewayApp.analysisAnalysisSetting.home.title'
         },
         canActivate: [UserRouteAccessService]

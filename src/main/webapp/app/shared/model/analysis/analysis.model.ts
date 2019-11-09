@@ -6,6 +6,7 @@ export const enum AnalysisType {
 
 export const enum AnalysisInputType {
     QUERY = 'QUERY',
+    GEO_AREA = 'GEO_AREA',
     DATASET = 'DATASET'
 }
 

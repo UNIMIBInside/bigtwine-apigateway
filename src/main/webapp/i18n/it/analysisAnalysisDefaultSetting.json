@@ -13,6 +13,8 @@
                 "title": "Analysis Default Setting"
             },
             "defaultValue": "Default Value",
+            "analysisType": "Analysis Type",
+            "analysisInputTypes": "Analysis Input Types",
             "userRoles": "User Roles",
             "userCanOverride": "User Can Override",
             "priority": "Priority",

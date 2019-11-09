@@ -9,8 +9,7 @@ import {
     IAnalysisSetting,
     AnalysisSetting,
     AnalysisSettingType,
-    AnalysisType,
-    AnalysisInputType
+    AnalysisSettingVisibility
 } from 'app/shared/model/analysis/analysis-setting.model';
 
 describe('Service Tests', () => {
@@ -30,12 +29,11 @@ describe('Service Tests', () => {
             elemDefault = new AnalysisSetting(
                 'ID',
                 'AAAAAAA',
+                'AAAAAAA',
+                'AAAAAAA',
                 AnalysisSettingType.NUMBER,
-                false,
-                'AAAAAAA',
-                'AAAAAAA',
-                AnalysisType.TWITTER_NEEL,
-                [AnalysisInputType.QUERY]
+                AnalysisSettingVisibility.GLOBAL,
+                'AAAAAAA'
             );
         });
 
@@ -71,11 +69,11 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         name: 'BBBBBB',
+                        label: 'BBBBBB',
+                        description: 'BBBBBB',
                         type: 'BBBBBB',
-                        userVisible: true,
-                        options: 'BBBBBB',
-                        analysisType: 'BBBBBB',
-                        analysisInputTypes: ['BBBBBB']
+                        visibility: 'BBBBBB',
+                        options: 'BBBBBB'
                     },
                     elemDefault
                 );
@@ -93,11 +91,11 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         name: 'BBBBBB',
+                        label: 'BBBBBB',
+                        description: 'BBBBBB',
                         type: 'BBBBBB',
-                        userVisible: true,
-                        options: 'BBBBBB',
-                        analysisType: 'BBBBBB',
-                        analysisInputTypes: ['BBBBBB']
+                        visibility: 'BBBBBB',
+                        options: 'BBBBBB'
                     },
                     elemDefault
                 );

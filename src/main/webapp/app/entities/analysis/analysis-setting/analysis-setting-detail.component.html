@@ -9,29 +9,25 @@
                 <dd>
                     <span>{{analysisSetting.name}}</span>
                 </dd>
+                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.label">Label</span></dt>
+                <dd>
+                    <span>{{analysisSetting.label}}</span>
+                </dd>
+                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.description">Description</span></dt>
+                <dd>
+                    <span>{{analysisSetting.description}}</span>
+                </dd>
                 <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.type">Type</span></dt>
                 <dd>
                     <span jhiTranslate="{{'apigatewayApp.AnalysisSettingType.' + analysisSetting.type}}">{{analysisSetting.type}}</span>
                 </dd>
-                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.userVisible">User Visible</span></dt>
+                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.visibility">Visibility</span></dt>
                 <dd>
-                    <span>{{analysisSetting.userVisible}}</span>
-                </dd>
-                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.description" [ngbTooltip]="'apigatewayApp.analysisAnalysisSetting.help.description' | translate">Description</span></dt>
-                <dd>
-                    <span>{{analysisSetting.description}}</span>
+                    <span jhiTranslate="{{'apigatewayApp.AnalysisSettingVisibility.' + analysisSetting.visibility}}">{{analysisSetting.visibility}}</span>
                 </dd>
                 <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.options" [ngbTooltip]="'apigatewayApp.analysisAnalysisSetting.help.options' | translate">Options</span></dt>
                 <dd>
                     <span>{{analysisSetting.options}}</span>
-                </dd>
-                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.analysisType">Analysis Type</span></dt>
-                <dd>
-                    <span jhiTranslate="{{'apigatewayApp.AnalysisType.' + analysisSetting.analysisType}}">{{analysisSetting.analysisType}}</span>
-                </dd>
-                <dt><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.analysisInputTypes">Analysis Input Types</span></dt>
-                <dd>
-                    <span>{{analysisSetting.analysisInputTypes?.join(', ')}}</span>
                 </dd>
             </dl>
 

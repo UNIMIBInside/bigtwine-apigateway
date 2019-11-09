@@ -10,6 +10,7 @@
                 "analysisAnalysis": "Analysis",
                 "analysisAnalysisSetting": "Analysis Setting",
                 "analysisAnalysisDefaultSetting": "Analysis Default Setting",
+                "analysisAnalysisSettingCollection": "Analysis Setting Collection",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

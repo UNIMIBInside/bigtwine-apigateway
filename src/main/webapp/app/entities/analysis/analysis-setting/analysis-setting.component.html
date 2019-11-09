@@ -13,14 +13,13 @@
     <div class="table-responsive" *ngIf="analysisSettings">
         <table class="table table-striped">
             <thead>
-            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="name"><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="type"><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.type">Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="userVisible"><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.userVisible">User Visible</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="options"><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.options">Options</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="analysisType"><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.analysisType">Analysis Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="analysisInputTypes"><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.analysisInputTypes">Analysis Input Types</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.name">Name</span></th>
+            <th><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.label">Label</span></th>
+            <th><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.description">Description</span></th>
+            <th><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.type">Type</span></th>
+            <th><span jhiTranslate="apigatewayApp.analysisAnalysisSetting.visibility">Visibility</span></th>
             <th></th>
             </tr>
             </thead>
@@ -28,11 +27,10 @@
             <tr *ngFor="let analysisSetting of analysisSettings ;trackBy: trackId">
                 <td><a [routerLink]="['/analysis-setting', analysisSetting.id, 'view' ]">{{analysisSetting.id}}</a></td>
                 <td>{{analysisSetting.name}}</td>
+                <td>{{analysisSetting.label}}</td>
+                <td>{{analysisSetting.description}}</td>
                 <td jhiTranslate="{{'apigatewayApp.AnalysisSettingType.' + analysisSetting.type}}">{{analysisSetting.type}}</td>
-                <td>{{analysisSetting.userVisible}}</td>
-                <td>{{analysisSetting.options}}</td>
-                <td jhiTranslate="{{'apigatewayApp.AnalysisType.' + analysisSetting.analysisType}}">{{analysisSetting.analysisType}}</td>
-                <td>{{analysisSetting.analysisInputTypes.join(', ')}}</td>
+                <td jhiTranslate="{{'apigatewayApp.AnalysisSettingVisibility.' + analysisSetting.visibility}}">{{analysisSetting.visibility}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
@@ -60,13 +58,5 @@
             </tr>
             </tbody>
         </table>
-    </div>
-    <div *ngIf="analysisSettings && analysisSettings.length">
-        <div class="row justify-content-center">
-            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
-        </div>
-        <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
-        </div>
     </div>
 </div>

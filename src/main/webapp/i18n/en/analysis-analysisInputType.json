@@ -3,6 +3,7 @@
         "AnalysisInputType": {
             "null": "",
             "QUERY": "QUERY",
+            "GEO_AREA": "GEO_AREA",
             "DATASET": "DATASET"
         }
     }

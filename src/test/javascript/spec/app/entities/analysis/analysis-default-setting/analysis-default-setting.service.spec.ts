@@ -1,11 +1,10 @@
 /* tslint:disable max-line-length */
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { of } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 import { AnalysisDefaultSettingService } from 'app/entities/analysis/analysis-default-setting/analysis-default-setting.service';
 import { IAnalysisDefaultSetting, AnalysisDefaultSetting } from 'app/shared/model/analysis/analysis-default-setting.model';
+import { AnalysisInputType, AnalysisType } from 'app/shared/model/analysis/analysis.model';
 
 describe('Service Tests', () => {
     describe('AnalysisDefaultSetting Service', () => {
@@ -21,7 +20,15 @@ describe('Service Tests', () => {
             service = injector.get(AnalysisDefaultSettingService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new AnalysisDefaultSetting('ID', 'AAAAAAA', ['AAAAAAA'], false, 0);
+            elemDefault = new AnalysisDefaultSetting(
+                'ID',
+                'AAAAAAA',
+                AnalysisType.TWITTER_NEEL,
+                AnalysisInputType.QUERY,
+                'AAAAAAA',
+                false,
+                0
+            );
         });
 
         describe('Service methods', async () => {
@@ -56,7 +63,9 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         defaultValue: 'BBBBBB',
-                        userRoles: ['BBBBBB'],
+                        analysisType: 'BBBBBB',
+                        analysisInputTypes: 'BBBBBB',
+                        userRoles: 'BBBBBB',
                         userCanOverride: true,
                         priority: 1
                     },
@@ -76,7 +85,9 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         defaultValue: 'BBBBBB',
-                        userRoles: ['BBBBBB'],
+                        analysisType: 'BBBBBB',
+                        analysisInputTypes: 'BBBBBB',
+                        userRoles: 'BBBBBB',
                         userCanOverride: true,
                         priority: 1
                     },
