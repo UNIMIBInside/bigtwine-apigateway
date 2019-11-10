@@ -34,8 +34,6 @@ public class MailService {
 
     private static final String BASE_URL = "baseUrl";
 
-    private static final String FRONTEND_NAME = "frontendName";
-
     private static final String FRONTEND_URL = "frontendUrl";
 
     private final JHipsterProperties jHipsterProperties;
@@ -88,7 +86,6 @@ public class MailService {
         Context context = new Context(locale);
         context.setVariable(USER, user);
         context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
-        context.setVariable(FRONTEND_NAME, applicationProperties.getFrontendName());
         context.setVariable(FRONTEND_URL, applicationProperties.getFrontendUrl());
         String content = templateEngine.process(getTemplateName(user, baseTemplateName), context);
         String subject = messageSource.getMessage(titleKey, null, locale);
