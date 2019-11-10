@@ -1,5 +1,6 @@
 package it.unimib.disco.bigtwine.services.apigateway.service;
 
+import it.unimib.disco.bigtwine.services.apigateway.config.ApplicationProperties;
 import it.unimib.disco.bigtwine.services.apigateway.domain.User;
 
 import io.github.jhipster.config.JHipsterProperties;
@@ -8,6 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import javax.mail.internet.MimeMessage;
 
+import it.unimib.disco.bigtwine.services.apigateway.security.AuthoritiesConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
@@ -32,7 +34,13 @@ public class MailService {
 
     private static final String BASE_URL = "baseUrl";
 
+    private static final String FRONTEND_NAME = "frontendName";
+
+    private static final String FRONTEND_URL = "frontendUrl";
+
     private final JHipsterProperties jHipsterProperties;
+
+    private final ApplicationProperties applicationProperties;
 
     private final JavaMailSender javaMailSender;
 
@@ -40,10 +48,11 @@ public class MailService {
 
     private final SpringTemplateEngine templateEngine;
 
-    public MailService(JHipsterProperties jHipsterProperties, JavaMailSender javaMailSender,
-            MessageSource messageSource, SpringTemplateEngine templateEngine) {
+    public MailService(JHipsterProperties jHipsterProperties, ApplicationProperties applicationProperties, JavaMailSender javaMailSender,
+                       MessageSource messageSource, SpringTemplateEngine templateEngine) {
 
         this.jHipsterProperties = jHipsterProperties;
+        this.applicationProperties = applicationProperties;
         this.javaMailSender = javaMailSender;
         this.messageSource = messageSource;
         this.templateEngine = templateEngine;
@@ -74,12 +83,14 @@ public class MailService {
     }
 
     @Async
-    public void sendEmailFromTemplate(User user, String templateName, String titleKey) {
+    public void sendEmailFromTemplate(User user, String baseTemplateName, String titleKey) {
         Locale locale = Locale.forLanguageTag(user.getLangKey());
         Context context = new Context(locale);
         context.setVariable(USER, user);
         context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
-        String content = templateEngine.process(templateName, context);
+        context.setVariable(FRONTEND_NAME, applicationProperties.getFrontendName());
+        context.setVariable(FRONTEND_URL, applicationProperties.getFrontendUrl());
+        String content = templateEngine.process(getTemplateName(user, baseTemplateName), context);
         String subject = messageSource.getMessage(titleKey, null, locale);
         sendEmail(user.getEmail(), subject, content, false, true);
 
@@ -88,18 +99,26 @@ public class MailService {
     @Async
     public void sendActivationEmail(User user) {
         log.debug("Sending activation email to '{}'", user.getEmail());
-        sendEmailFromTemplate(user, "mail/activationEmail", "email.activation.title");
+        sendEmailFromTemplate(user, "activationEmail", "email.activation.title");
     }
 
     @Async
     public void sendCreationEmail(User user) {
         log.debug("Sending creation email to '{}'", user.getEmail());
-        sendEmailFromTemplate(user, "mail/creationEmail", "email.activation.title");
+        sendEmailFromTemplate(user, "creationEmail", "email.activation.title");
     }
 
     @Async
     public void sendPasswordResetMail(User user) {
         log.debug("Sending password reset email to '{}'", user.getEmail());
-        sendEmailFromTemplate(user, "mail/passwordResetEmail", "email.reset.title");
+        sendEmailFromTemplate(user, "passwordResetEmail", "email.reset.title");
+    }
+
+    private String getTemplateName(User user, String baseTemplateName) {
+        boolean isAdmin = user.getAuthorities()
+            .stream()
+            .anyMatch(authority -> authority.getName().equals(AuthoritiesConstants.ADMIN));
+
+        return "mail/" + (isAdmin ? "admin" : "user") + "/" + baseTemplateName;
     }
 }

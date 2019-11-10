@@ -135,7 +135,7 @@ jhipster:
         allow-credentials: true
         max-age: 1800
     mail:
-        from: apigateway@localhost
+        from: info@bigtwine
     swagger:
         default-include-pattern: /api/.*
         title: apigateway API
@@ -157,4 +157,5 @@ jhipster:
 # https://www.jhipster.tech/common-application-properties/
 # ===================================================================
 
-# application:
+application:
+    frontend-url: localhost:8080
